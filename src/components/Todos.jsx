@@ -1,9 +1,11 @@
 
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
+import Button from '@mui/material/Button';
 
 import { useTableProps } from '../hooks/useTableProps';
 import TableProps from './table/TableProps';
+import { useNavigate } from 'react-router';
 
 
 const tableHead = [
@@ -15,15 +17,34 @@ const tableHead = [
   },
   {
     label: 'completed'
+  },
+  {
+    label: 'actions'
   }
 ]
 
 function Todos() {
+  const navigate = useNavigate();
   const { dataSource, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage } = useTableProps(
     {
       resource: 'todos',
     }
   );
+
+    // normal function
+  // function gotoDetail(id){
+  //   navigate(`/todo/${id}`)
+  // }
+
+  // curry function
+  // const gotoDetail = id => () => {
+  //   navigate(`/todo/${id}`)
+  // } 
+  function gotoDetail(id) {
+    return () => {
+      navigate(`/todo/${id}`)
+    }
+  }
 
   return (
    <>
@@ -45,7 +66,10 @@ function Todos() {
             </TableCell>
             <TableCell>{row.title}</TableCell>
             <TableCell>{row.completed ? 'true' : 'false'}</TableCell>
-            <TableCell>{row.completed ? 'true' : 'false'}</TableCell>
+            <TableCell>
+              {/* <Button variant="contained" onClick={() => gotoDetail(row.id)}>View Detail</Button> */}
+              <Button variant="contained" onClick={gotoDetail(row.id)}>View Detail</Button> 
+            </TableCell>
           </TableRow>
         )
       }}
