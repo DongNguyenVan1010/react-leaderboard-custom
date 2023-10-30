@@ -4,9 +4,6 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Todos from './components/Todos';
-import Album from './components/Album';
-import Posts from './components/Posts';
 import { Outlet, useNavigate } from 'react-router';
 
 function CustomTabPanel(props) {
@@ -67,15 +64,6 @@ export default function Apps() {
       </Box>
 
       <Outlet />
-      {/* <CustomTabPanel value={value} index={0}>
-        <Todos />
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        <Album />
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={2}>
-        <Posts />
-      </CustomTabPanel> */}
     </Box>
   );
 }
